@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <main class="container">
+      <h1>Extending Lipinski's Rule of Five</h1>
+
+      <p>
+        Medicinal Chemistry, the development of pharmaceuticals/drugs, is a time, money, and labor-intensive discipline.
+        Many of these resources have to be invested in synthesizing large libraries of compounds in order to find a promising drug candidate.
+        A good drug candidate must have many features, two of which are <strong>efficacy</strong> and <strong>good pharmacokinetics</strong>. Achieving both of these in one compound can be difficult because the regime to optimize one often sets back the other.
+      </p>
+      <p>
+        Medicinal chemists are always looking for general rules to help reduce the number of compounds that need to be made.
+        This means <em>predicting</em> which structures may have favorable properties.
+        <a href="https://www.ncbi.nlm.nih.gov/pubmed/11259830">Lipinski's Rule of Five</a>, published in 2001 by a scientist at Pfizer, is widely used in Medicinal Chemistry to predict the <strong>oral activity</strong> of a compound.
+        It is one of the <a href="http://www.meliordiscovery.com/about_advisors.html">most cited</a> articles in its entire journal.
+        If these guidelines are followed when optimizing the efficacy, it can reduce the likelihood of impairing the pharmacokinetics.
+      </p>
+      <ol>
+        <li>No more than 5 hydrogen bond donors.</li>
+        <li>No more than 10 hydrogen bond acceptors.</li>
+        <li>A molecular mass less than 500 daltons.</li>
+        <li>An octanol-water partition coefficient, <em>log P</em>, not greater than 5.</li>
+      </ol>
+      <p>
+        After <strong>15 years</strong>, this rule remains useful and relevant. <strong>Can they be iterated upon?</strong> 
+        The abundance of data, computing power, and practical methods to analyze it have increased dramatically since then.
+        <blockquote>
+          I would like to use Data Science to see if modern data sets supports or opposes these rules.
+          I would also like to <strong>build upon</strong> these rules by using machine learning to classify favorable compounds.
+          Introspecting such a model could elucidate <strong>more rules</strong> for Medicinal Chemists to use in their optimization regimes.
+        </blockquote>
+        I will get some preliminary data on a list of approved drugs.
+        A list of approved drugs was <strong>scraped</strong> from <a href="https://www.accessdata.fda.gov/scripts/cder/drugsatfda/index.cfm?fuseaction=Search.SearchResults_Browse&DrugInitial=A">this page</a> on the FDA's website.
+        Details on each compound were retrieved from the <a href="https://www.ncbi.nlm.nih.gov/pccompound?term=paclitaxel">PubChem API</a>.
+        The data is stored in PostgreSQL and exposed via a Node.js API.
+      </p>
+
+      <h5>Molecular Weight Distribution Among FDA-approved Drugs</h5>
+      <div id="ct-chart-molecular-weights" class="chart"></div>
+
+      <h5>H-bond Acceptor Distribution Among FDA-approved Drugs</h5>
+      <div id="ct-chart-h-bond" class="chart"></div>
+
+      <p>
+        Lipinski's Rules seem to be supported by currently approved drugs. Most of them are below 500 daltons in molecular weight and below 10 H-bond acceptors.
+      </p>
+    </main>
+
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdn.rawgit.com/alexstanbury/chartist-plugin-axistitle/master/dist/chartist-plugin-axistitle.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
+</html>
