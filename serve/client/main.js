@@ -15,7 +15,7 @@ fetch('/molecular_weights')
   plot('#ct-chart-molecular-weights', labels, values, 'Molecular Weight (Daltons)')
 })
 
-function plot(cssSelector, labels, values, yAxisTitle) {
+function plot(cssSelector, labels, values, xAxisTitle) {
   const max = Math.max.apply(null, values)
   const axisX = { showLabel: true }
   // show fewer labels if there are a ton of them
@@ -35,13 +35,13 @@ function plot(cssSelector, labels, values, yAxisTitle) {
     plugins: [
       Chartist.plugins.ctAxisTitle({
         axisX: {
-          axisTitle: 'Number of Compounds',
+          axisTitle: xAxisTitle,
           axisClass: 'ct-axis-title',
           offset: { x: 0, y: 30 },
           textAnchor: 'middle'
         },
         axisY: {
-          axisTitle: yAxisTitle,
+          axisTitle: 'Number of Compounds',
           axisClass: 'ct-axis-title',
           offset: { x: 0, y: 0 },
           textAnchor: 'middle',
